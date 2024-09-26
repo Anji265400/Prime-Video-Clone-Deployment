@@ -69,10 +69,12 @@ curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | 
 ```
 
 # install Sonarqube 
+```
 docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
+```
 
 # Connect to jenkins server 
-Add plugins:
+**Add plugins:**
 ```
 Eclipse Temurin installer Plugin
 SonarQube Scanner for Jenkins
