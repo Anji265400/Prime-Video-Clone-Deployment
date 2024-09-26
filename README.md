@@ -60,17 +60,48 @@ echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.
 sudo apt-get update
 sudo apt-get install trivy
 ```
-
-
 # **Install Docker Scout:**
 ```
 docker login       `Give Dockerhub credentials here`
 ```
 ```
-curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin
+curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin 
 ```
 # Deployment Stages:
 <img width="966" alt="Screenshot 2024-09-15 at 7 20 49 AM" src="https://github.com/user-attachments/assets/ddb5e618-79ab-49b3-8f13-b5114824eec3">
+# install Sonarqube 
+docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
+
+# Connect to jenkins server 
+Add pluggins:
+Eclipse Temurin installer Plugin
+SonarQube Scanner for Jenkins
+NodeJS Plugin
+OWASP Dependency-check
+Docker
+Docker commons
+Docker pipeline
+Docker-build-setup
+DOcker API
+Stage view (For visualize) 
+prometheus metrics
+Email Extension
+
+# Configure the Tools
+jdk (version jdk17)
+nodejs (version node16)
+SonarQube Scanner installations (sonar-scanner with latest version)
+Dependency-Check installations (DP-Check Install from github.com)
+Docker installations (Download from docker.com)
+
+# Setup sonarqube
+Generate sonar token from > Administration > security > user > Generate token > copy the token
+Generate the webhook from > Administration > Configuration > Create with name and jenkins url EX: http://3.235.68.24:8080/sonarqube-webhook/
+Return back to jenkins go to credentials add sonar token by selecting the kind as secret text past the token in secret text and type the id as sonar-token Description too
+
+# Set up the system Configuration in jenkins 
+SonarQube servers > name is sonar scanner > URL EX: http://3.235.68.24:9000 > Select the Sonar-token
+Extended E-mail Notification > SMTP server: smtp.gmail.com > SMTP Port:465 > E-mail Notification > SMTP server: smtp.gmail.com > Test configuration by sending test e-mail
 
 
 # Jenkins Complete pipeline
@@ -92,7 +123,7 @@ pipeline {
         }
         stage ("Git checkout") {
             steps {
-                git branch: 'main', url: 'https://github.com/yeshwanthlm/Prime-Video-Clone-Deployment.git'
+                git branch: 'main', url: 'https://github.com/Anji265400/Prime-Video-Clone-Deployment.git'
             }
         }
         stage("Sonarqube Analysis "){
