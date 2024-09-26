@@ -70,6 +70,9 @@ curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | 
 # Deployment Stages:
 <img width="966" alt="Screenshot 2024-09-15 at 7 20 49 AM" src="https://github.com/user-attachments/assets/ddb5e618-79ab-49b3-8f13-b5114824eec3">
 # install Sonarqube 
+
+
+
 docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
 
 # Connect to jenkins server 
