@@ -73,6 +73,7 @@ docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
 
 # Connect to jenkins server 
 Add plugins:
+---
 Eclipse Temurin installer Plugin
 SonarQube Scanner for Jenkins
 NodeJS Plugin
@@ -85,23 +86,27 @@ DOcker API
 Stage view (For visualize) 
 prometheus metrics
 Email Extension
-
+---
 # Configure the Tools
+---
 jdk (version jdk17)
 nodejs (version node16)
 SonarQube Scanner installations (sonar-scanner with latest version)
 Dependency-Check installations (DP-Check Install from github.com)
 Docker installations (Download from docker.com)
+---
 
 # Setup sonarqube
+---
 Generate sonar token from > Administration > security > user > Generate token > copy the token
 Generate the webhook from > Administration > Configuration > Create with name and jenkins url EX: http://3.235.68.24:8080/sonarqube-webhook/
 Return back to jenkins go to credentials add sonar token by selecting the kind as secret text past the token in secret text and type the id as sonar-token Description too
-
+---
 # Set up the system Configuration in jenkins 
+---
 SonarQube servers > name is sonar scanner > URL EX: http://3.235.68.24:9000 > Select the Sonar-token
 Extended E-mail Notification > SMTP server: smtp.gmail.com > SMTP Port:465 > E-mail Notification > SMTP server: smtp.gmail.com > Test configuration by sending test e-mail
-
+---
 
 
 # Deployment Stages:
